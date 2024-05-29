@@ -19,12 +19,15 @@ int main()
 
   inet_pton(AF_INET, "127.0.0.1", &serv_addr.sin_addr);
 
+  // 3. Client will try to make connection to the server
   status = connect(client_fd, (struct sockaddr *)&serv_addr, sizeof(serv_addr));
 
+  // 5. Client will send data to the server
   send(client_fd, hello, strlen(hello), 0);
 
   printf("Hello message sent\n");
 
+  // 8. Client will read the data
   valread = read(client_fd, buffer, 1024);
 
   printf("%s\n", buffer);
